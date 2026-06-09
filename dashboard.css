@@ -1,0 +1,377 @@
+/* client dashboard */
+.dashboard-stat-card { 
+transition: transform 0.2s; 
+cursor: pointer; 
+}
+
+.dashboard-stat-card:hover { 
+transform: translateY(-3px); 
+}
+.status-dot { 
+height: 10px; 
+width: 10px; 
+border-radius: 50%; 
+display: inline-block; 
+margin-right: 5px; 
+}
+
+.notification-unread { 
+border-left: 4px solid #7c3aed !important; 
+background-color: rgba(111, 66, 193, 0.03); 
+}
+
+.nav-pills .nav-link.active { 
+background-color: #7c3aed; 
+color: white; 
+}
+.nav-pills .nav-link { 
+color: #495057; 
+font-weight: 600; 
+}
+
+.star-rating { 
+display: inline-flex; 
+flex-direction: row-reverse; 
+justify-content: center; 
+}
+
+.star-rating input { 
+display: none; 
+}
+
+.star-rating label { 
+font-size: 2.5rem; 
+color: #e4e5e9; 
+cursor: pointer; 
+transition: color 0.2s; 
+padding: 0 5px; 
+}
+
+.star-rating input:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { 
+color: #ffc107; 
+}
+
+#accountSettingsModal .modal-content {
+border-radius: 16px !important;
+border: none;
+overflow: hidden;
+}
+
+#accountSettingsModal .asm-profile-bar {
+display: flex; 
+align-items: center; 
+gap: 12px;
+padding: .9rem 1.5rem;
+background: #faf9ff;
+border-top: 1px solid #f0eef9;
+border-bottom: 1px solid #f0eef9;
+}
+
+#accountSettingsModal .asm-avatar {
+width: 48px; height: 48px; border-radius: 50%;
+background: #ede7fb;
+display: flex; 
+align-items: center; 
+justify-content: center;
+font-size: 15px; 
+font-weight: 700; 
+color: #7c3aed;
+flex-shrink: 0; 
+overflow: hidden;
+}
+
+#accountSettingsModal .asm-section-label {
+font-size: 10px; 
+font-weight: 800;
+text-transform: uppercase; 
+letter-spacing: .09em;
+color: #adb5bd;
+display: flex; 
+align-items: center; gap: 8px;
+margin: 0 0 10px;
+}
+
+#accountSettingsModal .asm-section-label::after {
+content: ''; 
+flex: 1; 
+height: 1px; 
+background: #f0eef9;
+}
+
+#accountSettingsModal .form-control {
+border-color: #dee2e6; 
+font-size: 0.875rem;
+}
+
+#accountSettingsModal .form-control:focus {
+border-color: #7c3aed;
+box-shadow: 0 0 0 3px rgba(124, 58, 237, .12);
+}
+
+#accountSettingsModal .asm-pw-wrap { 
+position: relative; 
+}
+
+#accountSettingsModal .asm-eye-btn {
+position: absolute; 
+right: 10px; 
+top: 50%; 
+transform: translateY(-50%);
+background: none; 
+border: none; 
+color: #adb5bd; 
+cursor: pointer;
+display: flex; 
+padding: 0; 
+line-height: 1;
+}
+
+#accountSettingsModal .asm-eye-btn:hover { 
+color: #7c3aed; 
+}
+
+#accountSettingsModal .asm-strength-bars { 
+display: flex; 
+gap: 4px; 
+margin-top: 6px; 
+}
+
+#accountSettingsModal .asm-bar {
+height: 3px; 
+flex: 1; 
+border-radius: 2px;
+background: #e9ecef; 
+transition: background .2s;
+}
+
+#accountSettingsModal .asm-bar.active { 
+background: #7c3aed; 
+}
+
+#accountSettingsModal .asm-footer {
+display: flex; 
+align-items: center; 
+justify-content: flex-end;
+gap: 8px; 
+padding: .85rem 0 .5rem;
+border-top: 1px solid #f0eef9; 
+margin-top: .75rem;
+}
+
+/*________________________________________________________________________________________*/
+
+/* provider dashbaord */
+.dashboard-stat-card { transition: transform 0.2s; cursor: pointer; }
+.dashboard-stat-card:hover { transform: translateY(-3px); }
+.status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.notification-unread { border-left: 4px solid #7c3aed !important; background-color: rgba(111, 66, 193, 0.03); }
+
+.nav-pills .nav-link.active { background-color: #7c3aed; color: white; }
+.nav-pills .nav-link { color: #495057; font-weight: 600; }
+
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; }
+.calendar-day-header { font-size: 0.75rem; font-weight: bold; color: #6c757d; }
+.calendar-day { padding: 8px 0; border-radius: 8px; font-size: 0.85rem; background-color: #f8f9fa; }
+.calendar-day.empty { background-color: transparent; }
+.calendar-day.has-job { background-color: #7c3aed; color: white; font-weight: bold; box-shadow: 0 2px 4px rgba(111,66,193,0.3); cursor: pointer;}
+.calendar-day.today { border: 2px solid #7c3aed; }
+
+.btn-premium-purple {
+    background-color: #7c3aed;
+    color: #ffffff !important;
+    border: 2px solid #7c3aed;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-premium-purple:hover {
+    background-color: #7c3aed; 
+    border-color: #5a32a3;
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 15px rgba(111, 66, 193, 0.35);
+}
+
+.client-info-card {
+    background-color: #fcfaff;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.whatsapp-action {
+    background-color: #25D366;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border-radius: 50px;
+    padding: 5px 15px;
+}
+
+.job-heading {
+    font-size: 1.1rem;
+    color: #2d3748;
+    font-weight: 700;
+}
+
+.label-mini {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #6c757d;
+    display: block;
+}
+
+/* account settings */
+#accountSettingsModal .modal-content {
+    border-radius: 16px !important;
+    border: none;
+    overflow: hidden;
+}
+
+#accountSettingsModal .asm-profile-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: .9rem 1.5rem;
+    background: #faf9ff;
+    border-top: 1px solid #f0eef9;
+    border-bottom: 1px solid #f0eef9;
+}
+
+#accountSettingsModal .asm-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #ede7fb;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700;
+    color: #7c3aed;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+#accountSettingsModal .asm-section-label {
+    font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .09em;
+    color: #adb5bd;
+    display: flex; align-items: center; gap: 8px;
+    margin: 0 0 10px;
+}
+
+#accountSettingsModal .asm-section-label::after {
+    content: ''; flex: 1; height: 1px; background: #f0eef9;
+}
+
+#accountSettingsModal .form-control {
+    border-color: #dee2e6;
+    font-size: 0.875rem;
+}
+
+#accountSettingsModal .form-control:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, .12);
+}
+
+#accountSettingsModal .asm-pw-wrap { position: relative; }
+#accountSettingsModal .asm-eye-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: #adb5bd; cursor: pointer;
+    display: flex; padding: 0; line-height: 1;
+}
+
+#accountSettingsModal .asm-eye-btn:hover { color: #7c3aed; }
+#accountSettingsModal .asm-strength-bars { display: flex; gap: 4px; margin-top: 6px; }
+#accountSettingsModal .asm-bar {
+    height: 3px; flex: 1; border-radius: 2px;
+    background: #e9ecef; transition: background .2s;
+}
+
+#accountSettingsModal .asm-bar.active { background: #7c3aed; }
+#accountSettingsModal .asm-footer {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: 8px; padding: .85rem 0 .5rem;
+    border-top: 1px solid #f0eef9; margin-top: .75rem;
+}
+
+
+/*________________________________________________________________________________________*/
+
+/* admin dashbaord */
+.dashboard-stat-card { transition: transform 0.2s; cursor: pointer; }
+        .dashboard-stat-card:hover { transform: translateY(-3px); }
+        .status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .notification-unread { border-left: 4px solid #7c3aed !important; background-color: rgba(111, 66, 193, 0.03); }
+        
+        .nav-pills .nav-link.active { background-color: #7c3aed; color: white; } 
+        .nav-pills .nav-link { color: #495057; font-weight: 600; }
+        
+        .interactive-list-item { transition: background-color 0.2s, transform 0.2s; cursor: pointer; }
+        .interactive-list-item:hover { background-color: #f8f9fa; transform: translateX(4px); border-left: 4px solid #7c3aed !important; }
+        
+        /* Highlight for unresolved disputes */
+        .dispute-unresolved { background-color: rgba(111, 66, 193, 0.05); border-color: rgba(111, 66, 193, 0.3) !important; }
+        /* Account Settings Modal - Admin */
+        #accountSettingsModal .modal-content {
+            border-radius: 16px !important;
+            border: none;
+            overflow: hidden;
+        }
+        #accountSettingsModal .asm-profile-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: .9rem 1.5rem;
+            background: #faf9ff;
+            border-top: 1px solid #f0eef9;
+            border-bottom: 1px solid #f0eef9;
+        }
+        #accountSettingsModal .asm-avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: #ede7fb;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        #accountSettingsModal .asm-section-label {
+            font-size: 10px; font-weight: 800;
+            text-transform: uppercase; letter-spacing: .09em;
+            color: #adb5bd;
+            display: flex; align-items: center; gap: 8px;
+            margin: 0 0 10px;
+        }
+        #accountSettingsModal .asm-section-label::after {
+            content: ''; flex: 1; height: 1px; background: #f0eef9;
+        }
+        #accountSettingsModal .form-control {
+            border-color: #dee2e6;
+            font-size: 0.875rem;
+        }
+        #accountSettingsModal .form-control:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, .12);
+        }
+        #accountSettingsModal .form-control[readonly] {
+            background: #f8f9fa;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+        #accountSettingsModal .asm-pw-wrap { position: relative; }
+        #accountSettingsModal .asm-eye-btn {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: #adb5bd; cursor: pointer;
+            display: flex; padding: 0; line-height: 1;
+        }
+        #accountSettingsModal .asm-eye-btn:hover { color: #7c3aed; }
+        #accountSettingsModal .asm-strength-bars { display: flex; gap: 4px; margin-top: 6px; }
+        #accountSettingsModal .asm-bar {
+            height: 3px; flex: 1; border-radius: 2px;
+            background: #e9ecef; transition: background .2s;
+        }
+        #accountSettingsModal .asm-bar.active { background: #7c3aed; }
+        #accountSettingsModal .asm-footer {
+            display: flex; align-items: center; justify-content: flex-end;
+            gap: 8px; padding: .85rem 0 .5rem;
+            border-top: 1px solid #f0eef9; margin-top: .75rem;
+        }

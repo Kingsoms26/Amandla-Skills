@@ -1,0 +1,41 @@
+/* footer quote */
+.footer-content {
+    font-size: 1.1rem;
+    color: #475569; 
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+/* contact details */
+.footer-contact-details {
+    background-color: #ffffff; 
+    color: #334155;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-contact-details:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+.footer-contact a {
+    color: #7c3aed !important;
+    font-weight: 600;
+    text-decoration: none; 
+    transition: all 0.2s ease;
+}
+
+.footer-contact a:hover {
+    color: #5b21b6 !important; 
+    text-decoration: underline;
+}
+
+.footer-divider {
+    border-top: 1px solid #e2e8f0; 
+    opacity: 1;
+    width: 100%;
+    margin: 0 auto;
+}
