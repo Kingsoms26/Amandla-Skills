@@ -100,14 +100,13 @@ $initial    = strtoupper(substr(trim($user_name), 0, 1));
             <?php endif; ?>
         </div>
 
-        <!-- ③ HAMBURGER -->
+        <!-- HAMBURGER -->
         <button class="navbar-toggler border-0" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- ④ COLLAPSIBLE PANEL -->
         <div class="collapse navbar-collapse" id="navbarContent">
 
             <!-- Search — full width on mobile, capped on desktop -->
@@ -142,10 +141,9 @@ $initial    = strtoupper(substr(trim($user_name), 0, 1));
                 </li>
             </ul>
 
-            <!-- Right side: Lang + User -->
             <div class="navbar-right d-flex align-items-center gap-3">
 
-                <!-- Language — inside collapse on ALL screen sizes -->
+                <!-- inside collapse on ALL screen sizes -->
                 <div class="dropdown">
                     <button class="btn btn-sm lang-btn dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown">
                         <?php echo ($lang == 'en') ? 'EN' : 'XH'; ?>
@@ -155,8 +153,6 @@ $initial    = strtoupper(substr(trim($user_name), 0, 1));
                         <li><a class="dropdown-item <?php echo ($lang == 'xh') ? 'active' : ''; ?>" href="?lang=xh">IsiXhosa</a></li>
                     </ul>
                 </div>
-
-                <!-- User — desktop only (on mobile the avatar/login is in the top bar above) -->
                 
                 <!-- Bell icon with notification count -->
                  <?php if (isset($_SESSION['user_id'])): ?>
