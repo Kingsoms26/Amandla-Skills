@@ -13,8 +13,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
 $admin_id = $_SESSION['user_id'];
 $admin_name_full = trim($_SESSION['name'] ?? 'Administrator');
-$admin_name      = explode(' ', $admin_name_full)[0];
-$admin_pic       = $_SESSION['profile_pic'] ?? '';
+$admin_name = explode(' ', $admin_name_full)[0];
+$admin_pic = $_SESSION['profile_pic'] ?? '';
 
 
 // this function tries to find the best phone contact for a user based on their role and available data

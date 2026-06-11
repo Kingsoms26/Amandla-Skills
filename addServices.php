@@ -119,7 +119,6 @@ if ($_SESSION['user_role'] === 'client') {
     exit();
 }
 
-//--------------------------------------------------------------------------------------------------------------
 // only service providers reach this point
 if ($_SESSION['user_role'] !== 'service_provider') {
     $_SESSION['redirect_url'] = 'addServices.php';
