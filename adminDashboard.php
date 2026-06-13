@@ -426,7 +426,16 @@ if ($bookings_stmt) {
                                                                     <input type="hidden" name="action" value="update">
                                                                     <input type="hidden" name="target_user_id" value="<?php echo $u['id']; ?>">
                                                                     <input type="hidden" name="name" value="<?php echo htmlspecialchars($u['name']); ?>">
-                                                                    <input type="hidden" name="role" value="<?php echo htmlspecialchars($u['role']); ?>">
+
+                                                                    <div class="mb-4">
+                                                                        <label class="form-label small fw-bold text-muted text-uppercase">User Role</label>
+                                                                        <select class="form-select border-secondary-subtle" name="role" required>
+                                                                            <option value="client" <?php if($u['role']=='client') echo 'selected'; ?>>Client</option>
+                                                                            <option value="provider" <?php if($u['role']=='provider') echo 'selected'; ?>>Service Provider</option>
+                                                                            <option value="admin" <?php if($u['role']=='admin') echo 'selected'; ?>>Administrator</option>
+                                                                        </select>
+                                                                        <div class="form-text">Convert users between client/provider/admin.</div>
+                                                                    </div>
 
                                                                     <div class="mb-4">
                                                                         <label class="form-label small fw-bold text-muted text-uppercase">Account Status</label>
@@ -1253,7 +1262,6 @@ if ($bookings_stmt) {
 
     <!-- account settings, allows user to change selected information related to their account -->
     <?php
-    // Unified account vars for admin
     $acct_name    = $_SESSION['name']        ?? 'Administrator';
     $acct_email   = $_SESSION['email']       ?? '';
     $acct_pic     = $_SESSION['profile_pic'] ?? null;

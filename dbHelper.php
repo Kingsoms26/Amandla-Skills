@@ -30,7 +30,6 @@ function getLandingPageServices($conn, $search_query = null, $sort_option = 'new
         $sql .= " WHERE " . implode(" AND ", $conditions);
     }
 
-    // Grouping is strictly required when calculating AVG()
     $sql .= " GROUP BY s.id";
 
     // SORTING LOGIC
@@ -40,10 +39,8 @@ function getLandingPageServices($conn, $search_query = null, $sort_option = 'new
         $sql .= " ORDER BY s.id DESC"; 
     }
 
-    // Execute the final query
     $stmt = $conn->prepare($sql);
 
-    // Only bind parameters if there are any
     if (!empty($params)) {
         $stmt->bind_param($types, ...$params);
     }
@@ -151,7 +148,6 @@ function getClientFavorites($conn, $user_id) {
 // Provider profile
 // Get Provider Profile (Combines Users and Provider_Profiles tables)
 function getProviderProfileData($conn, $user_id) {
-    // UPDATED: Added verification_tier and verification_status to the SELECT list
     $stmt = $conn->prepare("
         SELECT u.name, u.email, u.profile_pic, p.id as profile_id, p.display_name, p.phone_number, p.service_location, p.account_status, p.verification_tier, p.verification_status 
         FROM users u 
@@ -202,6 +198,19 @@ function getProviderBookings($conn, $provider_user_id) {
     }
     $stmt->close();
     return $bookings;
+}
+
+function getUserProfilePicture($conn, $user_id) {
+    $stmt = $conn->prepare("SELECT profile_pic FROM users WHERE id = ?");
+    if (!$stmt) {
+        return null;
+    }
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+    return $row['profile_pic'] ?? null;
 }
 
 // user notifications for the notification feature

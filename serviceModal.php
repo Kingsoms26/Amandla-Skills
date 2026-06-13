@@ -141,7 +141,7 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label small fw-bold text-muted text-uppercase">City / Suburb</label>
-                                            <input type="text" class="form-control border-secondary-subtle" name="suburb" placeholder="e.g. Midrand" required>
+                                            <input type="text" class="form-control border-secondary-subtle" name="suburb" placeholder="e.g. Rosebank" required>
                                         </div>
                                         
                                         <div class="col-md-6 mb-3">

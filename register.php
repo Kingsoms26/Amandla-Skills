@@ -69,7 +69,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'email_taken') {
                             </div>
 
                             <div class="mb-4">
-                                <label class="fw-bold small text-uppercase text-secondary mb-2">Select: </label>
+                                <label class="fw-bold small text-uppercase text-secondary mb-2">I want to: </label>
                                 <select name="role" id="roleSelector" class="form-select border-secondary-subtle" required onchange="toggleProviderFields()">
                                     <option value="client" selected>Hire Service Providers (Client)</option>
                                     <option value="provider">Offer My Services (Provider)</option>

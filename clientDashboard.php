@@ -74,17 +74,12 @@ try {
     $all_notifications = getUserNotifications($conn, $user_id); 
 } catch (Exception $e) { }
 
-// BUCKET 1: Unread Notifications (For the Bell Icon and Red Badge)
-// In clientDashboard.php, change your buckets to this:
+
 $all_notifications = getUserNotifications($conn, $user_id); 
 
-// Just keep the one main variable if you want the modal to work as-is
 $notifications = $all_notifications; 
-
-// And define the counts and groups for the modal
 $unread_notifications_count = count(array_filter($notifications, function($n) { return !$n['is_read']; }));
 
-// BUCKET 2: Read Notifications (For the "Earlier / History" section)
 $history_notifications = array_filter($all_notifications, function($n) { 
     return $n['is_read']; 
 });
@@ -396,13 +391,21 @@ $history_notifications = array_values($history_notifications);
                                         <p class="text-muted small mb-0">You haven't had any completed jobs yet.</p>
                                     </div>
                                 <?php else: ?>
+                                    
                                     <div class="list-group list-group-flush">
                                         <?php foreach ($past_bookings as $booking): ?>
                                             <div class="list-group-item px-0 py-3 border-bottom border-light">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="d-flex align-items-center">
-                                                        <div class="profile-pic-large me-3 flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 1.2rem; background-color: #e9ecef; border-radius: 50%;">
-                                                            <span>👤</span>
+                                                        <div class="profile-pic-large me-3 flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 1.2rem; background-color: #e9ecef; border-radius: 50%; overflow: hidden;">
+                                                            <?php
+                                                                $provider_avatar = getUserProfilePicture($conn, $booking['provider_id']);
+                                                            ?>
+                                                            <?php if (!empty($provider_avatar)): ?>
+                                                                <img src="<?php echo htmlspecialchars($provider_avatar); ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%;">
+                                                            <?php else: ?>
+                                                                <span>👤</span>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <div>
                                                             <h6 class="fw-bold mb-0"><?php echo htmlspecialchars($booking['provider_name']); ?></h6>
@@ -487,8 +490,11 @@ $history_notifications = array_values($history_notifications);
                                             <div class="list-group-item px-0 py-3 border-0 mb-2">
                                                 <div class="d-flex align-items-start">
                                                     <div class="profile-pic-large me-3 flex-shrink-0 d-flex align-items-center justify-content-center overflow-hidden bg-light shadow-sm" style="width: 45px; height: 45px; font-size: 1.2rem; border-radius: 50%;">
-                                                        <?php if (!empty($rev['provider_pic'])): ?>
-                                                            <img src="<?php echo htmlspecialchars($rev['provider_pic']); ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
+                                                        <?php
+                                                            $provider_avatar = getUserProfilePicture($conn, $rev['provider_id']);
+                                                        ?>
+                                                        <?php if (!empty($provider_avatar)): ?>
+                                                            <img src="<?php echo htmlspecialchars($provider_avatar); ?>" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
                                                         <?php else: ?>
                                                             <span>👤</span>
                                                         <?php endif; ?>
@@ -576,9 +582,16 @@ $history_notifications = array_values($history_notifications);
                             </div>
                         <?php else: ?>
                             <?php foreach($favorites as $fav): ?>
+                                <?php $fav_pic = getUserProfilePicture($conn, $fav['provider_id']); ?>
                                 <div class="d-flex align-items-center justify-content-between mb-3 pb-3 border-bottom border-light">
                                     <div class="d-flex align-items-center text-truncate pe-2">
-                                        <div class="rounded-circle bg-purple-light text-purple d-flex align-items-center justify-content-center me-2 flex-shrink-0" style="width: 35px; height: 35px; background-color: rgba(124, 58, 237, 0.1);">👤</div>
+                                        <div class="rounded-circle bg-purple-light text-purple d-flex align-items-center justify-content-center me-2 flex-shrink-0" style="width: 35px; height: 35px; background-color: rgba(124, 58, 237, 0.1); overflow:hidden;">
+                                            <?php if (!empty($fav_pic)): ?>
+                                                <img src="<?php echo htmlspecialchars($fav_pic); ?>" alt="Provider" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                            <?php else: ?>
+                                                👤
+                                            <?php endif; ?>
+                                        </div>
                                         <div>
                                             <h6 class="fw-bold mb-0 text-truncate" style="font-size: 0.9rem;"><?php echo htmlspecialchars($fav['provider_name']); ?></h6>
                                             <small class="text-muted" style="font-size: 0.75rem;">Verified Provider</small>
