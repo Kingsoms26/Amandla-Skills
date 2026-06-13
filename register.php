@@ -55,7 +55,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'email_taken') {
                         <form action="process/processRegister.php" method="POST">
                             <div class="mb-3">
                                 <label class="fw-bold small text-uppercase text-secondary mb-1">Full Name / Business Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="e.g. Thabo Plumbing" required>
+                                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                             </div>
 
                             <div class="mb-3">
@@ -65,11 +65,11 @@ if (isset($_GET['error']) && $_GET['error'] == 'email_taken') {
 
                             <div class="mb-3">
                                 <label class="fw-bold small text-uppercase text-secondary mb-1">Password</label>
-                                <input type="password" name="password" class="form-control" minlength="8" placeholder="••••••••" required>
+                                <input type="password" name="password" class="form-control" minlength="6" placeholder="Password" required>
                             </div>
 
                             <div class="mb-4">
-                                <label class="fw-bold small text-uppercase text-secondary mb-2">I want to...</label>
+                                <label class="fw-bold small text-uppercase text-secondary mb-2">Select: </label>
                                 <select name="role" id="roleSelector" class="form-select border-secondary-subtle" required onchange="toggleProviderFields()">
                                     <option value="client" selected>Hire Service Providers (Client)</option>
                                     <option value="provider">Offer My Services (Provider)</option>
@@ -82,8 +82,7 @@ if (isset($_GET['error']) && $_GET['error'] == 'email_taken') {
                                 
                                 <div class="mb-3">
                                     <label class="fw-bold small text-uppercase text-secondary mb-1">Phone Number</label>
-                                    <!--<input type="tel" name="phoneNumber" id="phoneInput" class="form-control" placeholder="082 123 4567">-->
-                                    <input type="tel" id="phone" name="phone">
+                                    <input type="tel" id="phoneInput" name="phone" class="form-control" placeholder="082 123 4567">
                                 </div>
 
                                 <div class="mb-2">
@@ -127,10 +126,12 @@ if (isset($_GET['error']) && $_GET['error'] == 'email_taken') {
                     locationInput.required = false;
                 }
             }
+
+            document.addEventListener('DOMContentLoaded', toggleProviderFields);
         </script>
         <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@26.9.2/build/js/intlTelInput.min.js"></script>
         <script>
-            const input = document.querySelector("#phone");
+            const input = document.querySelector("#phoneInput");
             window.intlTelInput(input, 
             {
                 initialCountry: "za",
