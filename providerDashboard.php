@@ -781,7 +781,7 @@ foreach($active_jobs as $job) {
                     <div class="card-header bg-white border-bottom-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold mb-0"><?php echo $translations[$lang]['notification']; ?></h6>
                         <?php if ($unread_notifs > 0): ?>
-                            <span class="badge bg-#7c3aed rounded-circle"><?php echo $unread_notifs; ?></span>
+                            <span class="badge rounded-circle"><?php echo $unread_notifs; ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="card-body p-4 pt-2">

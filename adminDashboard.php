@@ -1152,7 +1152,7 @@ if ($bookings_stmt) {
                     <div class="card-header bg-white border-bottom-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold mb-0">Notifications</h6>
                         <?php if ($unread_notifications_count > 0): ?>
-                            <span class="badge bg-danger rounded-circle"><?php echo $unread_notifications_count; ?></span>
+                            <span class="badge bg-light-subtle rounded-circle"><?php echo $unread_notifications_count; ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="card-body p-4 pt-2">
