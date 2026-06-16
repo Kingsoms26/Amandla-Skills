@@ -154,8 +154,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'client') {
 
                     <div class="mt-4 mt-md-0 d-flex gap-2">
                         <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'client'): ?>
-                            <a href="process/processFavorite.php?provider_id=<?php echo $provider_id; ?>" class="btn <?php echo $is_favourited ? 'btn-danger' : 'btn-outline-danger'; ?> rounded-pill fw-bold px-4 shadow-sm">
-                                <?php echo $is_favourited ? '❤️ Saved' : '🤍 Save Provider'; ?>
+                            <a href="process/processFavourite.php?provider_id=<?php echo $provider_id; ?>" class="btn <?php echo $is_favourited ? 'btn-danger' : 'btn-outline-danger'; ?> rounded-pill fw-bold px-4 shadow-sm">
+                                <?php echo $is_favourited ? '&#10084;&#65039; Saved' : '&#129293; Save Provider'; ?>
                             </a>
                         <?php endif; ?>
                     </div>
@@ -303,7 +303,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'client') {
                                                 <?php if (!empty($rev['client_pic'])): ?>
                                                     <img src="<?php echo htmlspecialchars($rev['client_pic']); ?>" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                                                 <?php else: ?>
-                                                    <span>👤</span>
+                                                    <span>&#128100;</span>
                                                 <?php endif; ?>
                                             </div>
                                             <div class="w-100">

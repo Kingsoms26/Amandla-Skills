@@ -259,6 +259,15 @@ $history_notifications = array_values($history_notifications);
                                                                 </button>
                                                             </div>
 
+                                                        <?php elseif ($bstatus === 'disputed'): ?>
+                                                            <span class="badge bg-danger text-white rounded-pill mb-2">
+                                                                <span class="status-dot bg-white"></span>Dispute Active
+                                                            </span>
+                                                            <div class="fw-bold text-danger small mb-1">Under Admin Review</div>
+                                                            <div class="text-muted small fst-italic" style="max-width: 200px; margin-left: auto;">
+                                                                Funds are frozen. We will notify you once this is resolved.
+                                                            </div>
+
                                                         <?php elseif ($bstatus === 'completed' && strtolower($booking['payment_status'] ?? '') === 'pending'): ?>
                                                             <span class="badge bg-info text-dark rounded-pill mb-2">Job Completed</span>
                                                             <div class="fw-bold fs-5 text-dark mb-2">R <?php echo number_format($booking['final_price'], 2); ?></div>
@@ -623,8 +632,6 @@ $history_notifications = array_values($history_notifications);
             </div>
         </div>
     </main>
-
-    
 
     <!-- profile photo feature -->
     <div class="modal fade" id="editProfileModal" tabindex="-1">

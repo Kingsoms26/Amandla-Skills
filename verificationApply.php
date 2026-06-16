@@ -14,14 +14,13 @@ $user_id = $_SESSION['user_id'];
 $success_msg = '';
 $error_msg = '';
 
-// 1. Fetch current profile data
+// Fetch current profile data
 $profile_stmt = $conn->prepare("SELECT id, display_name, phone_number, verification_tier, verification_status FROM provider_profiles WHERE user_id = ?");
 $profile_stmt->bind_param("i", $user_id);
 $profile_stmt->execute();
 $provider_profile = $profile_stmt->get_result()->fetch_assoc();
 $profile_stmt->close();
 
-// 2. Fetch Job Count (Completed Jobs)
 $job_stmt = $conn->prepare("SELECT COUNT(*) as job_count FROM bookings WHERE provider_id = ? AND status = 'completed'");
 $job_stmt->bind_param("i", $user_id);
 $job_stmt->execute();
@@ -29,7 +28,7 @@ $job_data = $job_stmt->get_result()->fetch_assoc();
 $completed_jobs = $job_data['job_count'] ?? 0;
 $job_stmt->close();
 
-// 3. Fetch Average Rating
+// Fetch Average Rating
 $rating_stmt = $conn->prepare("SELECT AVG(rating) as avg_rating FROM reviews WHERE provider_id = ?");
 $rating_stmt->bind_param("i", $user_id);
 $rating_stmt->execute();
@@ -37,7 +36,6 @@ $rating_data = $rating_stmt->get_result()->fetch_assoc();
 $avg_rating = round($rating_data['avg_rating'] ?? 0, 1);
 $rating_stmt->close();
 
-// 4. Check for 30-day rejection rule
 $can_apply = true;
 $rejection_reason = '';
 if ($provider_profile['verification_status'] === 'rejected') {
@@ -58,8 +56,7 @@ if ($provider_profile['verification_status'] === 'rejected') {
     }
 }
 
-// 5. Handle Form Submission
-// 5. Handle Form Submission
+// Form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && $can_apply && !in_array($provider_profile['verification_status'], ['pending', 'interview_scheduled'])) {
     $full_name = htmlspecialchars($_POST['full_name'] ?? '');
     $email = htmlspecialchars($_POST['email'] ?? '');
@@ -75,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $can_apply && !in_array($provider_pr
     $upload_dir = 'uploads/verifications/';
     if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
 
-    // 1. Handle Mandatory ID Upload
+    // Handle Mandatory ID Upload
     if (!isset($_FILES['id_document']) || $_FILES['id_document']['error'] !== UPLOAD_ERR_OK) {
         $error_msg = "Please upload a valid ID or Passport document.";
     } else {
@@ -84,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $can_apply && !in_array($provider_pr
         move_uploaded_file($_FILES['id_document']['tmp_name'], $id_document_path);
     }
 
-    // 2. Handle CIPC Upload (if Top Pro)
+    // Handle CIPC Upload (if Top Pro)
     if (empty($error_msg) && $target_tier === 'top_pro') {
         $cipc_number = htmlspecialchars($_POST['cipc_number'] ?? '');
         if (empty($cipc_number) || !isset($_FILES['cipc_document']) || $_FILES['cipc_document']['error'] !== UPLOAD_ERR_OK) {
@@ -95,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $can_apply && !in_array($provider_pr
         }
     }
 
-    // 3. Single Execution Block
     if (empty($error_msg)) {
         $ins_stmt = $conn->prepare("INSERT INTO verification_requests (provider_id, full_name, email, phone, whatsapp, cipc_number, cipc_document_path, id_document_path, target_tier, message, status, submitted_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())");
         $ins_stmt->bind_param("isssssssss", $user_id, $full_name, $email, $phone, $whatsapp, $cipc_number, $cipc_document_path, $id_document_path, $target_tier, $message);
@@ -172,15 +168,12 @@ if ($avg_rating >= 4.0) {
         <?php if (in_array($provider_profile['verification_status'], ['pending', 'interview_scheduled', 'approved'])): ?>
             <div class="card shadow-sm border-0 rounded-4 p-5 text-center">
                 <?php if ($provider_profile['verification_status'] === 'approved'): ?>
-                    <div class="display-1 mb-3">🏅</div>
                     <h4 class="fw-bold text-dark">You are already verified!</h4>
                     <p class="text-muted mb-0">Your account holds the <strong><?php echo str_replace('_', ' ', ucwords($provider_profile['verification_tier'])); ?></strong> badge.</p>
                 <?php elseif ($provider_profile['verification_status'] === 'interview_scheduled'): ?>
-                    <div class="display-1 mb-3">📅</div>
                     <h4 class="fw-bold text-dark">Interview Scheduled</h4>
                     <p class="text-muted mb-0">Please check your email for the meeting link and details.</p>
                 <?php else: ?>
-                    <div class="display-1 mb-3">⏳</div>
                     <h4 class="fw-bold text-dark">Application Under Review</h4>
                     <p class="text-muted mb-0">Your application is currently being reviewed by the Amandla Skills support team.</p>
                 <?php endif; ?>
@@ -188,7 +181,6 @@ if ($avg_rating >= 4.0) {
 
         <?php elseif (!$can_apply): ?>
             <div class="card shadow-sm border-0 rounded-4 p-5 text-center" style="border-top: 4px solid #dc3545 !important;">
-                <div class="display-1 mb-3">🛑</div>
                 <h4 class="fw-bold text-danger">Application Unsuccessful</h4>
                 <p class="text-muted mb-4">Unfortunately, your previous application was not approved.</p>
                 <div class="bg-light p-3 rounded-4 text-start mb-4 border border-light">
@@ -212,7 +204,7 @@ if ($avg_rating >= 4.0) {
                         </div>
                         <div class="text-center px-3">
                             <div class="text-muted small text-uppercase fw-bold mb-1" style="font-size: 0.7rem;">Avg Rating</div>
-                            <div class="fs-4 fw-bold <?php echo ($avg_rating >= 4.0) ? 'text-success' : 'text-danger'; ?>">⭐ <?php echo number_format($avg_rating, 1); ?></div>
+                            <div class="fs-4 fw-bold <?php echo ($avg_rating >= 4.0) ? 'text-success' : 'text-danger'; ?>">&#11088; <?php echo number_format($avg_rating, 1); ?></div>
                         </div>
                     </div>
                 </div>
@@ -309,7 +301,6 @@ if ($avg_rating >= 4.0) {
                             <div class="col-12" id="cipcContainer" style="display: none;">
                                 <div class="bg-warning bg-opacity-10 p-4 rounded-4 border border-warning border-opacity-25">
                                     <div class="d-flex align-items-center gap-2 mb-3">
-                                        <span class="fs-5">🏢</span>
                                         <h6 class="fw-bold text-dark mb-0">Top Pro Requirements</h6>
                                     </div>
                                     <div class="row g-3">
@@ -351,7 +342,7 @@ if ($avg_rating >= 4.0) {
         <?php include('footer.php'); ?>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>    <script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script><script>
         document.addEventListener('DOMContentLoaded', function() {
             const radios = document.querySelectorAll('.tier-radio');
             const cards = document.querySelectorAll('.tier-card');

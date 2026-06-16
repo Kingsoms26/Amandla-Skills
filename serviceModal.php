@@ -9,7 +9,7 @@
                 </div>
                 
                 <div class="d-flex align-items-center gap-2">
-                    <a href="process/processFavorite.php?provider_id=<?php echo $modal_srv['user_id']; ?>" style="text-decoration: none;">
+                    <a href="process/processFavourite.php?provider_id=<?php echo $modal_srv['user_id']; ?>" style="text-decoration: none;">
                         <button class="btn <?php echo $is_favourited ? 'btn-danger' : 'btn-outline-danger'; ?> d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%;">
                             &hearts;
                         </button>

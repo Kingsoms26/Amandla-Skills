@@ -24,7 +24,6 @@ $lang = $_SESSION['lang'] ?? 'en';
 
     <?php include('navBar.php'); ?>
 
-    <!-- Hero -->
     <section class="about-hero text-center shadow-sm">
         <div class="container">
             <h1 class="display-5 fw-bolder mb-3">About Amandla Skills</h1>

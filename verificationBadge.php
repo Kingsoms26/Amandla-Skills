@@ -4,19 +4,19 @@ function getVerificationBadge($tier, $size = 'normal') {
     $badgeConfig = [
         'verified' => [
             'label' => 'Verified',
-            'bg' => '#dcfce7', // Light green
-            'text' => '#166534', // Dark green
+            'bg' => '#dcfce7', 
+            'text' => '#166534', 
             'border' => '#bbf7d0'
         ],
         'verified_pro' => [
             'label' => 'Verified Pro',
-            'bg' => '#7c3aed', // Primary purple
+            'bg' => '#7c3aed',
             'text' => '#ffffff',
             'border' => '#7c3aed'
         ],
         'top_pro' => [
             'label' => 'Top Pro',
-            'bg' => '#fbbf24', // Amber/Gold
+            'bg' => '#fbbf24', 
             'text' => '#78350f',
             'border' => '#d97706'
         ]

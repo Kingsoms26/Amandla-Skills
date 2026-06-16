@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // 3. Process New Image Uploads (if the user selected new files)
+        // Process New Image Uploads (if the user selected new files)
         if (isset($_FILES['new_images']) && !empty($_FILES['new_images']['name'][0])) {
             $upload_dir = '../uploads/portfolio/';
             if (!is_dir($upload_dir)) {
@@ -75,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $allowed = ['jpg', 'jpeg', 'png', 'webp'];
                     
                     if (in_array($ext, $allowed)) {
-                        // Generate a safe, unique filename
                         $new_filename = 'port_' . $user_id . '_' . time() . '_' . $i . '.' . $ext;
                         $destination = $upload_dir . $new_filename;
 

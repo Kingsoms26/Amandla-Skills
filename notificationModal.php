@@ -9,7 +9,7 @@
             
             <div class="modal-body p-0 mt-2">
                 <?php 
-                // 1. Separate the notifications into two groups
+                // Separate the notifications into two groups
                 $unread = array_filter($notifications, function($n) { return !$n['is_read']; });
                 $read = array_filter($notifications, function($n) { return $n['is_read']; });
                 ?>

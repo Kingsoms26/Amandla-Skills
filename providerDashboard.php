@@ -66,7 +66,7 @@ if (!empty($all_bookings)) {
         
         if ($status === 'pending') {
             $pending_requests[] = $booking;
-        } elseif (in_array($status, ['accepted', 'quote_submitted', 'payment_held', 'in_progress', 'pending_review'])) {
+        } elseif (in_array($status, ['accepted', 'quote_submitted', 'payment_held', 'in_progress', 'pending_review', 'disputed'])) {
             $active_jobs[] = $booking;
         } 
         elseif (in_array($status, ['completed', 'cancelled'])) {
@@ -474,6 +474,10 @@ foreach($active_jobs as $job) {
                                                                 </div>
                                                             <?php elseif ($job_status === 'pending_review'): ?>
                                                                 <span class="badge bg-info text-dark border rounded-pill px-3 py-1">Pending Client Confirmation (24hrs)</span>
+                                                            <?php elseif ($job_status === 'disputed'): ?>
+                                                                <span class="badge bg-danger text-white border border-danger border-opacity-25 rounded-pill px-3 py-1">
+                                                                    Dispute Active
+                                                                </span>
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>
@@ -494,6 +498,9 @@ foreach($active_jobs as $job) {
                                                             <span class="text-muted small fst-italic">Waiting for client approval...</span>
                                                         <?php elseif ($job_status === 'pending_review'): ?>
                                                             <span class="text-muted small fst-italic">Waiting for client confirmation...</span>
+                                                        <?php elseif ($job_status === 'disputed'): ?>
+                                                            <span class="text-danger small fw-bold d-block mb-1">Under Admin Review</span>
+                                                            <span class="text-muted small fst-italic">The client raised an issue. Funds are frozen until the admin contacts you.</span>
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>

@@ -83,7 +83,6 @@ $signature = md5( $getString );
                 <div class="card payment-card p-4 border-0">
                     <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
                         <h4 class="fw-bold mb-0">Secure Payment</h4>
-                        <img src="https://www.payfast.co.za/images/payfast_logo.svg" alt="PayFast" style="height: 30px;">
                     </div>
                     
                     <div class="row">

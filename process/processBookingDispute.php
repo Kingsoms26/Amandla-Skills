@@ -21,7 +21,6 @@ $stmt->bind_param("ii", $booking_id, $client_id);
 $stmt->execute();
 $stmt->close();
 
-// Get admin user_id
 $admin_row = $conn->query("SELECT id FROM users WHERE role = 'admin' LIMIT 1")->fetch_assoc();
 $admin_id  = $admin_row['id'] ?? null;
 

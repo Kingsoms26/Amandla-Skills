@@ -28,16 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
     } elseif ($action === 'approve') {
         $approved_tier = htmlspecialchars($_POST['approved_tier']);
         
-        // 1. Update Profile (Also keeping is_verified_pro = 1 for backwards compatibility)
+        // Update Profile 
         $ap_stmt = $conn->prepare("UPDATE provider_profiles SET verification_tier = ?, verification_status = 'approved', is_verified_pro = 1, verification_approved_at = NOW() WHERE user_id = ?");
         $ap_stmt->bind_param("si", $approved_tier, $provider_id);
         $ap_stmt->execute();
         $ap_stmt->close();
-        
-        // 2. Close out request
         $conn->query("UPDATE verification_requests SET status = 'approved', reviewed_at = NOW(), reviewed_by = $admin_id WHERE id = $request_id");
 
-        // 3. Optional: Notify Provider (if you have the notification insert function)
+        // Notify Provider
         $notif_title = "Account Verified!";
         $notif_msg = "Congratulations! You have been approved for the " . ucwords(str_replace('_', ' ', $approved_tier)) . " tier.";
         $n_stmt = $conn->prepare("INSERT INTO notifications (user_id, type, title, message) VALUES (?, 'system', ?, ?)");
