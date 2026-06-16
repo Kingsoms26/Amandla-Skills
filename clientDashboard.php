@@ -216,11 +216,11 @@ $history_notifications = array_values($history_notifications);
                                                         <?php endif; ?>
 
                                                         <?php if ($bstatus === 'pending'): ?>
-                                                            <span class="badge bg-warning text-dark rounded-pill mb-2"><span class="status-dot bg-dark"></span>Requested</span>
+                                                            <span class="badge bg-warning text-dark rounded-pill mb-2">Requested</span>
                                                             <div class="fw-bold text-muted small fst-italic">Awaiting Provider Response</div>
 
                                                         <?php elseif ($bstatus === 'accepted'): ?>
-                                                            <span class="badge bg-success text-white rounded-pill mb-2"><span class="status-dot bg-white"></span>Accepted</span>
+                                                            <span class="badge bg-success text-white rounded-pill mb-2"></span>Accepted</span>
                                                             <div class="fw-bold text-success small">Provider is scheduled — awaiting quote</div>
 
                                                         <?php elseif ($bstatus === 'quote_submitted'): ?>
@@ -261,7 +261,7 @@ $history_notifications = array_values($history_notifications);
 
                                                         <?php elseif ($bstatus === 'disputed'): ?>
                                                             <span class="badge bg-danger text-white rounded-pill mb-2">
-                                                                <span class="status-dot bg-white"></span>Dispute Active
+                                                                Dispute Active
                                                             </span>
                                                             <div class="fw-bold text-danger small mb-1">Under Admin Review</div>
                                                             <div class="text-muted small fst-italic" style="max-width: 200px; margin-left: auto;">

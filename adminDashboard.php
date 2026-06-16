@@ -406,7 +406,7 @@ if ($bookings_stmt) {
                                                             if($u['account_status'] == 'suspended') { $status_color = 'text-warning'; $status_dot = 'bg-warning'; }
                                                         ?>
                                                         <div class="d-flex align-items-center <?php echo $status_color; ?> fw-bold small text-capitalize">
-                                                            <span class="status-dot <?php echo $status_dot; ?>"></span> <?php echo $u['account_status']; ?>
+                                                             <?php echo $u['account_status']; ?>
                                                         </div>
                                                     </td>
                                                     <td class="text-end pe-4 border-light">
