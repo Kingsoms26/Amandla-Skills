@@ -224,7 +224,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'client') {
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body pt-3">
-                                                <!-- NEW: Added enctype="multipart/form-data" -->
                                                 <form action="process/processServiceAction.php" method="POST" enctype="multipart/form-data">
                                                     <input type="hidden" name="service_id" value="<?php echo $srv['service_id']; ?>">
                                                     <input type="hidden" name="action" value="update">
@@ -242,7 +241,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'client') {
                                                         <textarea name="description" class="form-control border-secondary-subtle" rows="4" required><?php echo htmlspecialchars($srv['description']); ?></textarea>
                                                     </div>
 
-                                                    <!-- NEW: Manage Portfolio Images -->
+                                                    <!-- Manage Portfolio Images -->
                                                     <div class="p-3 bg-light rounded-3 border mb-4">
                                                         <h6 class="fw-bold mb-3 small text-uppercase text-muted">Manage Images</h6>
                                                         

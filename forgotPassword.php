@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php'); // Ensure this points to your database connection
+include('config.php');
 
 $msg = "";
 $msg_type = "";

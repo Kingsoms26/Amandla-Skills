@@ -150,7 +150,7 @@ foreach($active_jobs as $job) {
                 <div class="mt-3 mt-md-0 ms-md-auto d-flex flex-wrap gap-2 justify-content-center">
                     <button class="btn btn-outline-secondary fw-bold px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#editProfileModal"><?php echo $translations[$lang]['photo'] ?? 'Update Photo'; ?></button>
                     <button class="btn btn-outline-secondary fw-bold px-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#accountSettingsModal"><?php echo $translations[$lang]['acc_settings'] ?? 'Account Settings'; ?></button>
-                    <a href="profile.php" class="btn text-white fw-bold px-4 rounded-pill shadow-sm" style="background-color: #6f42c1;"><?php echo $translations[$lang]['manage_services'] ?? 'Manage Services'; ?></a>
+                    <a href="profile.php?id=<?php echo $user_id; ?>" class="btn text-white fw-bold px-4 rounded-pill shadow-sm" style="background-color: #6f42c1;"><?php echo $translations[$lang]['manage_services'] ?? 'Manage Services'; ?></a>
                 </div>
             </div>
         </div>
@@ -781,7 +781,7 @@ foreach($active_jobs as $job) {
                     <div class="card-header bg-white border-bottom-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold mb-0"><?php echo $translations[$lang]['notification']; ?></h6>
                         <?php if ($unread_notifs > 0): ?>
-                            <span class="badge bg-danger rounded-circle"><?php echo $unread_notifs; ?></span>
+                            <span class="badge bg-#7c3aed rounded-circle"><?php echo $unread_notifs; ?></span>
                         <?php endif; ?>
                     </div>
                     <div class="card-body p-4 pt-2">
